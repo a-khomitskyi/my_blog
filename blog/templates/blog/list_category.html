@@ -1,0 +1,4 @@
+{% for category in categories %}
+    <li style="background-color: #eceff1 "><a class="drawer-dropdown-menu-item" href="{{ category.get_absolute_url }}"
+    >{{ category.title }}</a></li>
+{% endfor %}

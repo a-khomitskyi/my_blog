@@ -1,0 +1,78 @@
+{% load menu %}
+{% load static %}
+
+{#Include CDN's library#}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/drawer/3.2.2/css/drawer.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/iScroll/5.2.0/iscroll.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/drawer/3.2.2/js/drawer.min.js"></script>
+
+<aside id="fh5co-aside" role="complementary" class="border js-fullheight" style="overflow-y: auto">
+
+    <h1 id="fh5co-logo">
+        <a href="{% url 'home' %}">
+            <img src="{% static 'images/pidguen.png' %}" style="width: 28px">
+            Andrii X
+        </a>
+    </h1>
+
+    {% block navbar %}
+        <nav id="fh5co-main-menu" role="navigation">
+
+            <ul>
+                <li>
+                    <a class="drawer-menu-item" href="{% url 'home' %}">
+                        Home
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="drawer-menu">
+                <li class="drawer-dropdown">
+                    <a class="drawer-menu-item" href="#" data-toggle="dropdown" role="button" aria-expanded="false">
+                        Blog <span class="drawer-caret"></span>
+                    </a>
+                    <ul class="drawer-dropdown-menu">
+                        {% get_category %}
+                    </ul>
+                </li>
+            </ul>
+
+            <ul>
+                <li>
+                    <a class="drawer-dropdown-menu-item" href="{% url 'projects' %}">
+                        Projects
+                    </a>
+                </li>
+                <li>
+                    <a class="drawer-dropdown-menu-item" href="{% url 'about' %}">
+                        About
+                    </a>
+                </li>
+
+            </ul>
+
+        </nav>
+    {% endblock %}
+
+    <div class="fh5co-footer">
+        <p>
+            <small>
+                <span>Designed by<a href="{% url 'about' %}" target="_blank"> Andrii X.</a></span>
+            </small>
+        </p>
+
+        <span>
+            Contact with me:
+        </span>
+
+        <ul>
+            <li><a href="https://linkedin.com/in/andrii-khomitskyi"><i class="icon-linkedin2"></i></a></li>
+            <li><a href="https://github.com/a-khomitskyi"><i class="icon-github"></i></a></li>
+            <li><a href="https://t.me/HasNoMatter"><i class="icon-telegram"></i></a></li>
+            <li><a href="https://twitter.com/hasn0matter"><i class="icon-twitter2"></i></a></li>
+            <li><a href="mailto: homitskiy.andriy@gmail.com"><i class="icon-mail5"></i></a></li>
+        </ul>
+    </div>
+
+</aside>

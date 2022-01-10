@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div id="fh5co-main">
+        <div class="fh5co-narrow-content">
+            <div class="row">
+                <div class="col-md-4 animate-box" data-animate-effect="fadeInLeft">
+                    <img class="img-responsive" src="{{ post.photo.url }}" alt="Photo does not exist">
+                </div>
+                <br>
+                <div class="row" data-animate-effect="fadeInLeft" style="margin-left: 15px ">
+                    <h2 class="fh5co-heading" style="margin-bottom: 10px">{{ post.title }}</h2>
+                    <p class="fh5co-heading" style="margin-bottom: 10px">
+                        <a href="{{ post.category_id.get_absolute_url }}">
+                            {{ post.category_id }}</p>
+                        </a>
+                    <p>{{ post.content|safe }}</p>
+                    <small><i>Posted {{ post.created_at }}</i></small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
