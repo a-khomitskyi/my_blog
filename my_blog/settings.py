@@ -206,3 +206,9 @@ CKEDITOR_CONFIGS = {
         ]),
     }
 }
+# E-mail configure
+EMAIL_HOST = 'smtp-relay.sendinblue.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'twfkbpvuxtu@frederictonlawyer.com'
+EMAIL_HOST_PASSWORD = 'hEBF2st1GA6U8WPS'
+EMAIL_USE_SSL = True

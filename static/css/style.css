@@ -96,7 +96,6 @@ figure figcaption {
   bottom: 0;
   top: 0;
   left: 0;
-  overflow-y: scroll;
   z-index: 1001;
   -webkit-transition: 0.5s;
   -o-transition: 0.5s;
@@ -211,7 +210,7 @@ figure figcaption {
   transform: scaleX(1);
 }
 #fh5co-aside .fh5co-footer {
-  position: absolute;
+  position: page;
   bottom: 40px;
   font-size: 14px;
   text-align: center;

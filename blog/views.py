@@ -1,8 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView
-from django.http import HttpResponse
+from django.core.mail import send_mail
+from django.contrib import messages
 
 from .models import Category, Post
+from .forms import ContactForm
 
 
 class HomeBlog(ListView):
@@ -34,3 +36,22 @@ def get_list_project(request):
 
 def get_project(request, slug):
     return render(request, 'blog/view_project.html')
+
+
+def view_send_mail(request):
+    if request.method == 'POST':
+        form = ContactForm(data=request.POST)
+        if form.is_valid():
+            res = send_mail(subject=form.cleaned_data['email'], message=form.cleaned_data['message'],
+                            from_email='twfkbpvuxtu@frederictonlawyer.com', recipient_list=['ganjuibas@gmail.com', ])
+            if res:
+                messages.success(request, 'Message has been sending')
+                print(res)
+                print(request.POST)
+                return redirect('home')
+            else:
+                messages.error(request, 'Something wrong... Please, repeat later')
+                return redirect('home')
+    else:
+        form = ContactForm()
+    return render(request, 'blog/contact.html', {'form': form})

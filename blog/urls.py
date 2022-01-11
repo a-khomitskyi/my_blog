@@ -13,4 +13,5 @@ urlpatterns = [
     path('about', about, name='about'),
     path('projects/', get_list_project, name='projects'),
     path('pet/<str:slug>', get_project, name='project'),
+    path('contact/', view_send_mail, name='contact'),
 ]
