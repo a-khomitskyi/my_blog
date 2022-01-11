@@ -5,6 +5,7 @@ from django.contrib import messages
 
 from .models import Category, Post
 from .forms import ContactForm
+import os
 
 
 class HomeBlog(ListView):
@@ -43,7 +44,7 @@ def view_send_mail(request):
         form = ContactForm(data=request.POST)
         if form.is_valid():
             res = send_mail(subject=form.cleaned_data['email'], message=form.cleaned_data['message'],
-                            from_email='twfkbpvuxtu@frederictonlawyer.com', recipient_list=['ganjuibas@gmail.com', ])
+                            from_email=os.environ['EMAIL_HOST'], recipient_list=[os.environ['EMAIL_RECIPIENT'], ])
             if res:
                 messages.success(request, 'Message has been sending')
                 print(res)

@@ -21,7 +21,7 @@ class ContactForm(forms.Form):
 
     def clean_name(self):
         name = self.cleaned_data['name']
-        if not re.match(r'[a-zA-Z]]', name):
+        if not re.match(r'[a-zA-Z]', name):
             raise ValidationError('Enter your real name (not nic)')
         return name
 

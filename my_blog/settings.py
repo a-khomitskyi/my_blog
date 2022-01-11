@@ -21,7 +21,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-zmx4v$ldiai2tt3^eubd0g14lb59fd&wm1in$*+_reysb6z_f$"
+SECRET_KEY = os.environ['SECRET_KEY']
+             # "django-insecure-zmx4v$ldiai2tt3^eubd0g14lb59fd&wm1in$*+_reysb6z_f$"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -207,8 +208,9 @@ CKEDITOR_CONFIGS = {
     }
 }
 # E-mail configure
-EMAIL_HOST = 'smtp-relay.sendinblue.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'twfkbpvuxtu@frederictonlawyer.com'
-EMAIL_HOST_PASSWORD = 'hEBF2st1GA6U8WPS'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = os.environ['EMAIL_HOST']
+EMAIL_HOST_PASSWORD = os.environ['EMAIL_PASS']
 EMAIL_USE_SSL = True
+EMAIL_RECIPIENT = os.environ['EMAIL_RECIPIENT']
