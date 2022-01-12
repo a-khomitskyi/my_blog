@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+{% load random_photo %}
+{% get_random_photo_url as rand_photo %}
+{% load static %}
 
 {% block content %}
 
@@ -6,14 +9,22 @@
         <div class="fh5co-narrow-content">
             <h2 class="fh5co-heading animate-box" data-animate-effect="fadeInLeft">Portfolio</h2>
             <div class="row row-bottom-padded-md">
-                <div class="col-md-3 col-sm-6 col-padding text-center animate-box">
-                    <a href="#" class="work image-popup" style="background-image: url(images/img-1.jpg);">
+                {% for project in projects %}
+                    <div class="col-md-3 col-sm-6 col-padding text-center animate-box">
+                        {% if project.photo %}
+                            <a href="{{ project.get_absolute_url }}" class="work image-popup"
+                               style="background-image: url({{ project.photo.url }});">
+                        {% else %}
+                            <a href="{{ project.get_absolute_url }}" class="work image-popup" style="background-image: url(
+                                    {% static 'images/img-4.jpg' %});">
+                        {% endif %}
                         <div class="desc">
-                            <h3>Project Name</h3>
-                            <span>Illustration</span>
+                            <h3>{{ project.title }}</h3>
+                            <span>{{ project.content|truncatewords:10|safe }}</span>
                         </div>
-                    </a>
-                </div>
+                        </a>
+                    </div>
+                {% endfor %}
 
 
                 <div class="fh5co-narrow-content">

@@ -41,7 +41,7 @@ class PostAdmin(admin.ModelAdmin):
 class ProjectAdmin(admin.ModelAdmin):
     save_on_top = True
     form = PostAdminForm
-    fields = ('title', 'slug', 'content', 'get_miniature', 'photo', 'views' 'technology_id', )
+    fields = ('title', 'slug', 'content', 'get_miniature', 'photo', 'views', 'technology_id', )
     list_display = ('id', 'title', 'slug', 'get_miniature', 'views', )
     list_display_links = ('id', 'title', )
     readonly_fields = ('get_miniature', 'views', )

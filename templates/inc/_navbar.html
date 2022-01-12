@@ -33,6 +33,8 @@
                         Blog <span class="drawer-caret"></span>
                     </a>
                     <ul class="drawer-dropdown-menu">
+                        <li style="background-color: #eceff1 "><a class="drawer-dropdown-menu-item"
+                                                                  href="{% url 'all_posts' %}">All Posts</a></li>
                         {% get_category %}
                     </ul>
                 </li>

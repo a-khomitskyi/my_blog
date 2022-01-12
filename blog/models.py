@@ -47,6 +47,17 @@ class Project(models.Model):
     views = models.IntegerField(default=0, verbose_name='Views')
     technology_id = models.ManyToManyField('Technology', verbose_name='Technology')
 
+    def get_absolute_url(self):
+        return reverse('project', kwargs={'slug': self.slug})
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'Project'
+        verbose_name_plural = 'Projects'
+        ordering = ['id', ]
+
 
 class Technology(models.Model):
     name = models.CharField(max_length=60, verbose_name='Title')

@@ -2,8 +2,9 @@ from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView
 from django.core.mail import send_mail
 from django.contrib import messages
+from django.db.models import Count
 
-from .models import Category, Post
+from .models import Category, Post, Project, Technology
 from .forms import ContactForm
 import os
 
@@ -13,7 +14,18 @@ class HomeBlog(ListView):
 
 
 def index(request):
-    return render(request, 'blog/index.html')
+    posts = Post.objects.all().select_related()
+    recent_posts = posts.order_by('-created_at')[:4]
+    most_pop_posts = posts.order_by('-views')[:4]
+    recent_projects = Project.objects.all().order_by('-id')[:4]
+    most_used_technologies = Technology.objects.annotate(cnt=Count('project__technology_id'))[:4]
+    return render(request, 'blog/index.html', {'recent_posts': recent_posts, 'most_pop_posts': most_pop_posts,
+                                               'recent_projects': recent_projects, 'most_used_technologies': most_used_technologies})
+
+
+def get_all_posts(request):
+    posts = Post.objects.all()
+    return render(request, 'blog/main-blog.html', {'posts': posts})
 
 
 def get_category(request, slug):
@@ -32,7 +44,8 @@ def about(request):
 
 
 def get_list_project(request):
-    return render(request, 'blog/view_projects.html')
+    projects = Project.objects.all().order_by('-id')
+    return render(request, 'blog/view_projects.html', {'projects': projects})
 
 
 def get_project(request, slug):
