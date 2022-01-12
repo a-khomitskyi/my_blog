@@ -11,7 +11,7 @@
 
     <h1 id="fh5co-logo">
         <a href="{% url 'home' %}">
-            <img src="{% static 'images/pidguen.png' %}" style="width: 28px">
+            <img src="{% static 'images/pidguen.png' %}" style="width: 28px" alt="Logo">
             Andrii X
         </a>
     </h1>
@@ -19,15 +19,13 @@
     {% block navbar %}
         <nav id="fh5co-main-menu" role="navigation">
 
-            <ul>
-                <li>
+            <ul class="drawer-menu">
+                <li class="fh5co-active">
                     <a class="drawer-menu-item" href="{% url 'home' %}">
                         Home
                     </a>
                 </li>
-            </ul>
 
-            <ul class="drawer-menu">
                 <li class="drawer-dropdown">
                     <a class="drawer-menu-item" href="#" data-toggle="dropdown" role="button" aria-expanded="false">
                         Blog <span class="drawer-caret"></span>
@@ -38,9 +36,7 @@
                         {% get_category %}
                     </ul>
                 </li>
-            </ul>
 
-            <ul>
                 <li>
                     <a class="drawer-dropdown-menu-item" href="{% url 'projects' %}">
                         Projects

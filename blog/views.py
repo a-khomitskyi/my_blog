@@ -18,7 +18,8 @@ def index(request):
     recent_posts = posts.order_by('-created_at')[:4]
     most_pop_posts = posts.order_by('-views')[:4]
     recent_projects = Project.objects.all().order_by('-id')[:4]
-    most_used_technologies = Technology.objects.annotate(cnt=Count('project__technology_id'))[:4]
+    most_used_technologies = Project.objects.annotate(cnt=Count('technology_id__name')).order_by('-cnt')
+    print(most_used_technologies)
     return render(request, 'blog/index.html', {'recent_posts': recent_posts, 'most_pop_posts': most_pop_posts,
                                                'recent_projects': recent_projects, 'most_used_technologies': most_used_technologies})
 
@@ -49,7 +50,8 @@ def get_list_project(request):
 
 
 def get_project(request, slug):
-    return render(request, 'blog/view_project.html')
+    project = Project.objects.get(slug=slug)
+    return render(request, 'blog/view_project.html', {'project': project})
 
 
 def view_send_mail(request):
