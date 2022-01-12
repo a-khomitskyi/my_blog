@@ -1,35 +1,28 @@
 from django.shortcuts import render, redirect
-from django.views.generic import ListView, DetailView
 from django.core.mail import send_mail
 from django.contrib import messages
 from django.db.models import Count
+from django.views.generic import ListView
 
-from .models import Category, Post, Project, Technology
+from .models import Category, Post, Project
 from .forms import ContactForm
 import os
 
 
-class HomeBlog(ListView):
+class HomeView(ListView):
     template_name = 'blog/index.html'
+    context_object_name = 'most_used_technologies'
 
-
-def index(request):
-    posts = Post.objects.all().select_related()
-    recent_posts = posts.order_by('-created_at')[:4]
-    most_pop_posts = posts.order_by('-views')[:4]
-    recent_projects = Project.objects.all().order_by('-id')[:4]
-    most_used_technologies = Project.objects.annotate(cnt=Count('technology_id__name')).order_by('-cnt')
-    print(most_used_technologies)
-    return render(request, 'blog/index.html', {'recent_posts': recent_posts, 'most_pop_posts': most_pop_posts,
-                                               'recent_projects': recent_projects, 'most_used_technologies': most_used_technologies})
+    def get_queryset(self):
+        most_used_technologies = Project.objects.annotate(cnt=Count('technology_id__name')).order_by('-cnt')
+        return {'most_used_technologies': most_used_technologies}
 
 
 def get_all_posts(request):
-    posts = Post.objects.all()
-    return render(request, 'blog/main-blog.html', {'posts': posts})
+    return render(request, 'blog/main-blog.html')
 
 
-def get_category(request, slug):
+def get_category_posts(request, slug):
     category = Category.objects.get(slug=slug)
     posts = Post.objects.filter(category_id__slug=slug)
     return render(request, 'blog/category_posts.html', {'category': category, 'posts': posts})
@@ -45,8 +38,7 @@ def about(request):
 
 
 def get_list_project(request):
-    projects = Project.objects.all().order_by('-id')
-    return render(request, 'blog/view_projects.html', {'projects': projects})
+    return render(request, 'blog/view_projects.html')
 
 
 def get_project(request, slug):
