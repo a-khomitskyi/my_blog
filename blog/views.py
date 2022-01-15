@@ -1,49 +1,65 @@
 from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 from django.contrib import messages
-from django.db.models import Count
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 
 from .models import Category, Post, Project
 from .forms import ContactForm
 import os
 
 
-class HomeView(ListView):
-    template_name = 'blog/index.html'
-    context_object_name = 'most_used_technologies'
+def index(request):
+    return render(request, 'blog/index.html')
+
+
+class ViewAllPosts(ListView):
+    model = Post
+    template_name = 'blog/main-blog.html'
+    context_object_name = 'posts'
 
     def get_queryset(self):
-        most_used_technologies = Project.objects.annotate(cnt=Count('technology_id__name')).order_by('-cnt')
-        return {'most_used_technologies': most_used_technologies}
+        return Post.objects.all().select_related()
 
 
-def get_all_posts(request):
-    return render(request, 'blog/main-blog.html')
+class ViewCategoryPost(ListView):
+    template_name = 'blog/category_posts.html'
+    context_object_name = 'posts'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['category'] = Category.objects.get(slug=self.kwargs['slug'])
+        return context
+
+    def get_queryset(self):
+        return Post.objects.filter(category_id__slug=self.kwargs['slug']).select_related()
 
 
-def get_category_posts(request, slug):
-    category = Category.objects.get(slug=slug)
-    posts = Post.objects.filter(category_id__slug=slug)
-    return render(request, 'blog/category_posts.html', {'category': category, 'posts': posts})
+class ViewPost(DetailView):
+    model = Post
+    context_object_name = 'post'
+    template_name = 'blog/post.html'
 
-
-def get_post(request, slug):
-    post = Post.objects.get(slug=slug)
-    return render(request, 'blog/post.html', {'post': post})
+    def get_queryset(self):
+        return Post.objects.filter(slug=self.kwargs['slug'])
 
 
 def about(request):
     return render(request, 'blog/about.html')
 
 
-def get_list_project(request):
-    return render(request, 'blog/view_projects.html')
+class ViewProjects(ListView):
+    template_name = 'blog/view_projects.html'
+    model = Project
+    context_object_name = 'projects'
 
 
-def get_project(request, slug):
-    project = Project.objects.get(slug=slug)
-    return render(request, 'blog/view_project.html', {'project': project})
+class ViewProject(DetailView):
+    template_name = 'blog/view_project.html'
+    context_object_name = 'project'
+    model = Project
+
+    def get_queryset(self):
+        return Project.objects.filter(slug=self.kwargs['slug'])
 
 
 def view_send_mail(request):

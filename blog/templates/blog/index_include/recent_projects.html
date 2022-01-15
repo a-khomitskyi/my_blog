@@ -1,0 +1,26 @@
+{% load static %}
+{% load general_tags %}
+
+<div class="fh5co-narrow-content">
+    <h2 class="fh5co-heading animate-box" data-animate-effect="fadeInLeft">Recent Projects</h2>
+    <div class="row row-bottom-padded-md">
+        {% get_projects as get_projects %}
+        {% for recent_project in get_projects|dictsortreversed:"pk"|slice:4 %}
+            <div class="col-md-3 col-sm-6 col-padding text-center animate-box">
+                {% if recent_project.photo %}
+                    <a href="{{ recent_project.get_absolute_url }}" class="work image-popup"
+                       style="background-image: url({{ recent_project.photo.url }});">
+                {% else %}
+                    <a href="{{ recent_project.get_absolute_url }}" class="work image-popup"
+                       style="background-image: url(
+                               {% static 'images/img-4.jpg' %});">
+                {% endif %}
+                <div class="desc">
+                    <h3>{{ recent_project.title }}</h3>
+                    <span>{{ recent_project.content|truncatewords:10|safe }}</span>
+                </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+</div>

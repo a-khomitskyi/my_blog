@@ -10,3 +10,4 @@ register = template.Library()
 def get_category():
     categories = Category.objects.all()
     return {'categories': categories}
+

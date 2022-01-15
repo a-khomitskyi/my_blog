@@ -1,13 +1,11 @@
 {% extends 'base.html' %}
-{% load general_tags %}
 
 {% block content %}
     <div id="fh5co-main">
         <div class="fh5co-narrow-content">
-            <h2 class="fh5co-heading animate-box" data-animate-effect="fadeInLeft">All Posts</h2>
+            <h2 class="fh5co-heading animate-box" data-animate-effect="fadeInLeft">{% block head %}All Posts{% endblock %}</h2>
             <div class="row row-bottom-padded-md">
-                {% get_posts as posts %}
-                {% for post in posts %}
+                {% for post in posts|dictsortreversed:"created_at" %}
                     <div class="col-md-3 col-sm-6 col-padding animate-box" data-animate-effect="fadeInLeft">
                         <div class="blog-entry">
                             <a href="{{ post.get_absolute_url }}" class="blog-img"><img src="{{ post.photo.url }}"

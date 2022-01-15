@@ -13,6 +13,7 @@
                 {% endif %}
                 <div class="row" data-animate-effect="fadeInLeft" style="margin-left: 15px ">
                     <h2 class="fh5co-heading" style="margin-bottom: 10px">{{ project.title }}</h2>
+                    <i>Technologies: {% for item in project.technology_id.all %}{{ item.slug }} / {% endfor %}</i>
                     <p>{{ project.content|safe }}</p>
                 </div>
             </div>

@@ -6,160 +6,17 @@
 {% block content %}
     <div id="fh5co-main">
         {{ block.super }}
-        <aside id="fh5co-hero" class="js-fullheight">
-            <div class="flexslider js-fullheight">
-                <ul class="slides">
-                    <li style="background-image: url({% static 'images/img_bg_1.jpg' %});">
-                        <div class="overlay"></div>
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-md-8 col-md-offset-2 text-center js-fullheight slider-text">
-                                    <div class="slider-text-inner">
-                                        <h1><strong>Welcome!</strong> There you can find a lot of information about
-                                            me
-                                            <p>
-                                                <a href="{% url 'about' %}" class="btn btn-primary btn-learn">Learn More<i
-                                                        class="icon-arrow-right3"></i></a>
-                                            </p>
-                                        </h1>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li style="background-image: url({% static 'images/img_bg_2.jpg' %});">
-                        <div class="overlay"></div>
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-md-8 col-md-offset-2 text-center js-fullheight slider-text">
-                                    <div class="slider-text-inner">
-                                        <h1>What I think about
-                                            <p>
-                                                <a href="" class="btn btn-primary btn-learn">Learn More<i
-                                                        class="icon-arrow-right3"></i></a>
-                                            </p>
-                                        </h1>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li style="background-image: url({% static 'images/img_bg_3.jpg' %});">
-                        <div class="overlay"></div>
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-md-8 col-md-offset-2 text-center js-fullheight slider-text">
-                                    <div class="slider-text-inner">
-                                        <h1>And what I do ... .
-                                            <p>
-                                                <a href="{% url 'projects' %}" class="btn btn-primary btn-learn">Learn
-                                                    More<i
-                                                            class="icon-arrow-right3"></i></a>
-                                            </p>
-                                        </h1>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </aside>
 
-        <div class="fh5co-narrow-content">
-            <h2 class="fh5co-heading animate-box" data-animate-effect="fadeInLeft">Most Popular Posts</h2>
-            <div class="row row-bottom-padded-md">
-                {% get_posts as get_posts %}
-                {% for most_pop_post in get_posts|dictsortreversed:"views"|slice:4 %}
-                    <div class="col-md-3 col-sm-6 col-padding animate-box" data-animate-effect="fadeInLeft">
-                        <div class="blog-entry">
-                            <a href="{{ most_pop_post.get_absolute_url }}" class="blog-img"><img src="
-{{ most_pop_post.photo.url }}"
-                                                                                                 class="img-responsive"
-                                                                                                 alt="Non available photo"></a>
-                            <div class="desc">
-                                <h3><a href="{{ most_pop_post.get_absolute_url }}">{{ most_pop_post.title }}</a></h3>
-                                <span><small>{{ most_pop_post.category_id }} </small> / <small> <i
-                                        class="icon-comment"></i> {{ most_pop_post.created_at|date:"d.m.Y" }}</small></span>
-                                <p>{{ most_pop_post.content|truncatewords:15|safe }}</p>
-                                <a href="{{ most_pop_post.get_absolute_url }}" class="lead">Read More <i
-                                        class="icon-arrow-right3"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
+        {% include 'blog/index_include/big_present.html' %}
 
-        <div class="fh5co-narrow-content">
-            <h2 class="fh5co-heading animate-box" data-animate-effect="fadeInLeft">Recent Posts</h2>
-            <div class="row row-bottom-padded-md">
-                {% for recent_post in get_posts|dictsortreversed:"created_at"|slice:4 %}
-                    <div class="col-md-3 col-sm-6 col-padding animate-box" data-animate-effect="fadeInLeft">
-                        <div class="blog-entry">
-                            <a href="{{ recent_post.get_absolute_url }}" class="blog-img"><img src="
-{{ recent_post.photo.url }}"
-                                                                                               class="img-responsive"
-                                                                                               alt="Non available photo"></a>
-                            <div class="desc">
-                                <h3><a href="{{ recent_post.get_absolute_url }}">{{ recent_post.title }}</a></h3>
-                                <span><small>{{ recent_post.category_id }} </small> / <small> <i
-                                        class="icon-comment"></i> {{ recent_post.created_at|date:"d.m.Y" }}</small></span>
-                                <p>{{ recent_post.content|truncatewords:15|safe }}</p>
-                                <a href="{{ recent_post.get_absolute_url }}" class="lead">Read More <i
-                                        class="icon-arrow-right3"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
+{#        {% include 'blog/index_include/most_popular_posts.html' %}#}
+        {% get_posts %}
+{#        {% include 'blog/index_include/recent_posts.html' %}#}
 
-        <div class="fh5co-narrow-content">
-            <h2 class="fh5co-heading animate-box" data-animate-effect="fadeInLeft">Recent Projects</h2>
-            <div class="row row-bottom-padded-md">
-                {% get_projects as get_projects %}
-                {% for recent_project in get_projects|dictsortreversed:"pk"|slice:4 %}
-                    <div class="col-md-3 col-sm-6 col-padding text-center animate-box">
-                        {% if recent_project.photo %}
-                            <a href="{{ recent_project.get_absolute_url }}" class="work image-popup"
-                               style="background-image: url({{ recent_project.photo.url }});">
-                        {% else %}
-                            <a href="{{ recent_project.get_absolute_url }}" class="work image-popup"
-                               style="background-image: url(
-                                       {% static 'images/img-4.jpg' %});">
-                        {% endif %}
-                        <div class="desc">
-                            <h3>{{ recent_project.title }}</h3>
-                            <span>{{ recent_project.content|truncatewords:10|safe }}</span>
-                        </div>
-                        </a>
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
+        {% include 'blog/index_include/recent_projects.html' %}
 
-        {#        <div class="fh5co-narrow-content">#}
-        {#            <h2 class="fh5co-heading animate-box" data-animate-effect="fadeInLeft">Most Used Technology</h2>#}
-        {#            <div class="row">#}
-        {#                {% for tch in most_used_technologies %}#}
-        {#                <div class="col-md-3">#}
-        {#                    <div class="fh5co-feature animate-box" data-animate-effect="fadeInLeft">#}
-        {#                        <div class="fh5co-icon">#}
-        {#                            <i class="icon-plug"></i>#}
-        {#                        </div>#}
-        {#                        <div class="fh5co-text">#}
-        {#                            <h3>{{ tch }}</h3>#}
-        {#                            <p>Far far away, behind the word mountains, far from the countries Vokalia and#}
-        {#                                Consonantia,#}
-        {#                                there live the blind texts. </p>#}
-        {#                        </div>#}
-        {#                    </div>#}
-        {#                </div>#}
-        {#                {% endfor %}#}
-        {##}
-        {#            </div>#}
-        {#        </div>#}
+        {% get_most_used_tchs %}
+
         <div id="get-in-touch">
             <div class="fh5co-narrow-content">
                 <div class="row">

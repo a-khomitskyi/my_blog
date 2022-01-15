@@ -1,0 +1,21 @@
+<div class="fh5co-narrow-content">
+    <h2 class="fh5co-heading animate-box" data-animate-effect="fadeInLeft">Most Used Technology</h2>
+    <div class="row">
+        {% for tch in most_used_tchs %}
+            <div class="col-md-3">
+                <div class="fh5co-feature animate-box" data-animate-effect="fadeInLeft">
+                    <div class="fh5co-icon">
+                        <i class="icon-plug"></i>
+                    </div>
+                    <div class="fh5co-text">
+                        <h3>{{ tch }}</h3>
+                        <p>Far far away, behind the word mountains, far from the countries Vokalia and
+                            Consonantia,
+                            there live the blind texts. </p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+</div>

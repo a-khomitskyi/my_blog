@@ -6,7 +6,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/iScroll/5.2.0/iscroll.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/drawer/3.2.2/js/drawer.min.js"></script>
-
+<script src="{% static 'js/active.js' %}"></script>
 <aside id="fh5co-aside" role="complementary" class="border js-fullheight" style="overflow-y: auto">
 
     <h1 id="fh5co-logo">
@@ -20,15 +20,16 @@
         <nav id="fh5co-main-menu" role="navigation">
 
             <ul class="drawer-menu">
-                <li class="fh5co-active">
+                <li>
                     <a class="drawer-menu-item" href="{% url 'home' %}">
                         Home
                     </a>
                 </li>
 
-                <li class="drawer-dropdown">
-                    <a class="drawer-menu-item" href="#" data-toggle="dropdown" role="button" aria-expanded="false">
+                <li class="drawer-dropdown {% if '/category/' in request.path %}open{% endif %}">
+                    <a class="drawer-menu-item" data-toggle="dropdown" role="button" aria-expanded="false">
                         Blog <span class="drawer-caret"></span>
+
                     </a>
                     <ul class="drawer-dropdown-menu">
                         <li style="background-color: #eceff1 "><a class="drawer-dropdown-menu-item"
