@@ -18,4 +18,5 @@ urlpatterns = [
     path('pet/<str:slug>', ViewProject.as_view(), name='project'),
     # path('pet/<str:slug>', get_project, name='project'),
     path('contact/', view_send_mail, name='contact'),
+    path('tag/<str:slug>', ViewTagProjects.as_view(), name='tag_projects'),
 ]

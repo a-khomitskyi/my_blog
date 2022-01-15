@@ -3,7 +3,7 @@ from django.core.mail import send_mail
 from django.contrib import messages
 from django.views.generic import ListView, DetailView
 
-from .models import Category, Post, Project
+from .models import Category, Post, Project, Technology
 from .forms import ContactForm
 import os
 
@@ -40,7 +40,7 @@ class ViewPost(DetailView):
     template_name = 'blog/post.html'
 
     def get_queryset(self):
-        return Post.objects.filter(slug=self.kwargs['slug'])
+        return Post.objects.filter(slug=self.kwargs['slug']).select_related()
 
 
 def about(request):
@@ -60,6 +60,20 @@ class ViewProject(DetailView):
 
     def get_queryset(self):
         return Project.objects.filter(slug=self.kwargs['slug'])
+
+
+class ViewTagProjects(ListView):
+    template_name = 'blog/tag_projects.html'
+    model = Project
+    context_object_name = 'projects'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['tag'] = str(self.request.path).split('/')[-1]
+        return context
+
+    def get_queryset(self):
+        return Project.objects.filter(technology_id__slug=self.kwargs['slug'])
 
 
 def view_send_mail(request):

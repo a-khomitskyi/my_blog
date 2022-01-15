@@ -65,9 +65,9 @@ class Technology(models.Model):
 
     def __str__(self):
         return self.name
-    #
-    # def get_absolute_url(self):
-    #     return reverse('')
+
+    def get_absolute_url(self):
+        return reverse('tag_projects', kwargs={'slug': self.slug})
 
     class Meta:
         verbose_name = 'Technology'
