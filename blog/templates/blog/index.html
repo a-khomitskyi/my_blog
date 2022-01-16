@@ -4,36 +4,32 @@
 
 
 {% block content %}
-    <div id="fh5co-main">
-        {{ block.super }}
 
-        {% include 'blog/index_include/big_present.html' %}
+    {% include 'blog/index_include/big_present.html' %}
 
-{#        {% include 'blog/index_include/most_popular_posts.html' %}#}
-        {% get_posts %}
-{#        {% include 'blog/index_include/recent_posts.html' %}#}
+    {#        {% include 'blog/index_include/most_popular_posts.html' %}#}
+    {% get_posts %}
+    {#        {% include 'blog/index_include/recent_posts.html' %}#}
+    {% include 'blog/index_include/recent_projects.html' %}
 
-        {% include 'blog/index_include/recent_projects.html' %}
+    {% get_most_used_tchs %}
 
-        {% get_most_used_tchs %}
-
-        <div id="get-in-touch">
-            <div class="fh5co-narrow-content">
-                <div class="row">
-                    <div class="col-md-4 animate-box" data-animate-effect="fadeInLeft">
-                        <h1 class="fh5co-heading-colored">Hi, there!</h1>
-                    </div>
+    <div id="get-in-touch">
+        <div class="fh5co-narrow-content" style="padding: 10px">
+            <div class="row">
+                <div class="col-md-4 animate-box" data-animate-effect="fadeInLeft">
+                    <h1 class="fh5co-heading-colored">Hi, there!</h1>
                 </div>
-                <div class="row">
-                    <div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box"
-                         data-animate-effect="fadeInLeft">
-                        <p class="fh5co-lead">I'm Andrii and that's my own blog. Here is and will more
-                            interesting
-                            information about me. Let be together!</p>
-                        <p><a href="{% url 'about' %}" class="btn btn-primary">Read More</a></p>
-                    </div>
-
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box"
+                     data-animate-effect="fadeInLeft">
+                    <p class="fh5co-lead">I'm Andrii and that's my own blog. Here is and will more
+                        interesting
+                        information about me. Let be together!</p>
+                    <p><a href="{% url 'about' %}" class="btn btn-primary">Read More</a></p>
                 </div>
+
             </div>
         </div>
     </div>

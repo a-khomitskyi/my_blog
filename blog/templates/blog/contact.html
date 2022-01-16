@@ -1,64 +1,62 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div id="fh5co-main">
-        <div class="fh5co-more-contact">
-            <div class="fh5co-narrow-content">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="fh5co-feature fh5co-feature-sm animate-box" data-animate-effect="fadeInLeft">
-                            <div class="fh5co-icon">
-                                <i class="icon-globe"></i>
-                            </div>
-                            <div class="fh5co-text">
-                                <p><a href="{% url 'about' %}">About Me</a></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="fh5co-feature fh5co-feature-sm animate-box" data-animate-effect="fadeInLeft">
-                            <div class="fh5co-icon">
-                                <i class="icon-map"></i>
-                            </div>
-                            <div class="fh5co-text">
-                                <p>Ivano-Frankivs'k, Ukraine, 76019</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="fh5co-feature fh5co-feature-sm animate-box" data-animate-effect="fadeInLeft">
-                            <div class="fh5co-icon">
-                                <i class="icon-phone"></i>
-                            </div>
-                            <div class="fh5co-text">
-                                <p><a href="tel://">+380ХХХХХХХХХ</a></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="fh5co-narrow-content animate-box" data-animate-effect="fadeInLeft">
-
+    <div class="fh5co-more-contact">
+        <div class="fh5co-narrow-content">
             <div class="row">
                 <div class="col-md-4">
-                    <h2>Give me a question</h2>
-                </div>
-            </div>
-            <form method="post">
-                {% csrf_token %}
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="row">
-                            {{ form.non_field_errors }}
-                            {{ form.as_p }}
-                            <input type="submit" class="btn btn-primary btn-md" value="Send Message">
+                    <div class="fh5co-feature fh5co-feature-sm animate-box" data-animate-effect="fadeInLeft">
+                        <div class="fh5co-icon">
+                            <i class="icon-globe"></i>
                         </div>
-
+                        <div class="fh5co-text">
+                            <p><a href="{% url 'about' %}">About Me</a></p>
+                        </div>
                     </div>
                 </div>
-
-            </form>
+                <div class="col-md-4">
+                    <div class="fh5co-feature fh5co-feature-sm animate-box" data-animate-effect="fadeInLeft">
+                        <div class="fh5co-icon">
+                            <i class="icon-map"></i>
+                        </div>
+                        <div class="fh5co-text">
+                            <p>Ivano-Frankivs'k, Ukraine, 76019</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="fh5co-feature fh5co-feature-sm animate-box" data-animate-effect="fadeInLeft">
+                        <div class="fh5co-icon">
+                            <i class="icon-phone"></i>
+                        </div>
+                        <div class="fh5co-text">
+                            <p><a href="tel://">+380ХХХХХХХХХ</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
+    <div class="fh5co-narrow-content animate-box" data-animate-effect="fadeInLeft">
+
+        <div class="row">
+            <div class="col-md-4">
+                <h2>Give me a question</h2>
+            </div>
+        </div>
+        <form method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        {{ form.non_field_errors }}
+                        {{ form.as_p }}
+                        <input type="submit" class="btn btn-primary btn-md" value="Send Message">
+                    </div>
+
+                </div>
+            </div>
+
+        </form>
     </div>
 {% endblock %}

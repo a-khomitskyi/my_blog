@@ -3,30 +3,28 @@
 
 {% block content %}
 
-    <div id="fh5co-main">
-        <div class="fh5co-narrow-content">
-            <h2 class="fh5co-heading animate-box" data-animate-effect="fadeInLeft">{% block head %}Portfolio
-                {% endblock %}</h2>
-            <div class="row row-bottom-padded-md">
-                {% for project in projects|dictsortreversed:"pk" %}
-                    <div class="col-md-3 col-sm-6 col-padding text-center animate-box">
-                        {% if project.photo %}
-                            <a href="{{ project.get_absolute_url }}" class="work image-popup"
-                               style="background-image: url({{ project.photo.url }});">
-                        {% else %}
-                            <a href="{{ project.get_absolute_url }}" class="work image-popup"
-                               style="background-image: url(
-                                       {% static 'images/img-4.jpg' %});">
-                        {% endif %}
-                        <div class="desc">
-                            <h3>{{ project.title }}</h3>
-                            <span>{{ project.content|truncatewords:10|safe }}</span>
-                        </div>
-                        </a>
+    <div class="fh5co-narrow-content">
+        <h2 class="fh5co-heading animate-box" data-animate-effect="fadeInLeft">{% block head %}Portfolio
+        {% endblock %}</h2>
+        <div class="row row-bottom-padded-md">
+            {% for project in projects|dictsortreversed:"pk" %}
+                <div class="col-md-3 col-sm-6 col-padding text-center animate-box">
+                    {% if project.photo %}
+                        <a href="{{ project.get_absolute_url }}" class="work image-popup"
+                           style="background-image: url({{ project.photo.url }});">
+                    {% else %}
+                        <a href="{{ project.get_absolute_url }}" class="work image-popup"
+                           style="background-image: url(
+                                   {% static 'images/img-4.jpg' %});">
+                    {% endif %}
+                    <div class="desc">
+                        <h3>{{ project.title }}</h3>
+                        <span>{{ project.content|truncatewords:10|safe }}</span>
                     </div>
-                {% endfor %}
+                    </a>
+                </div>
+            {% endfor %}
 
-            </div>
         </div>
     </div>
 
