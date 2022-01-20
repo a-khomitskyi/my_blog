@@ -1,7 +1,9 @@
+{% load general_tags %}
+
 <div class="fh5co-narrow-content" style="padding-bottom: 1px; padding-top: 55px">
     <h2 class="fh5co-heading animate-box" data-animate-effect="fadeInLeft">Most Popular Posts</h2>
     <div class="row row-bottom-padded-md">
-        {% for most_pop_post in most_popular_posts|dictsortreversed:"views"|slice:4 %}
+        {% for most_pop_post in posts|dictsortreversed:"most_popular_posts"|slice:4 %}
             <div class="col-md-3 col-sm-6 col-padding animate-box" data-animate-effect="fadeInLeft">
                 <div class="blog-entry">
                     <a href="{{ most_pop_post.get_absolute_url }}" class="blog-img"><img src="{% if post.photo %}
@@ -25,7 +27,7 @@
 <div class="fh5co-narrow-content" style="padding-bottom: 15px; padding-top: 5px">
     <h2 class="fh5co-heading animate-box" data-animate-effect="fadeInLeft">Recent Posts</h2>
     <div class="row row-bottom-padded-md">
-        {% for recent_post in recent_posts|dictsortreversed:"created_at"|slice:4 %}
+        {% for recent_post in posts|dictsortreversed:"created_at"|slice:4 %}
             <div class="col-md-3 col-sm-6 col-padding animate-box" data-animate-effect="fadeInLeft">
                 <div class="blog-entry">
                     <a href="{{ recent_post.get_absolute_url }}" class="blog-img"><img src="

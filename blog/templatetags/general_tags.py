@@ -1,6 +1,6 @@
 from django import template
-from django.db.models import Count
-from blog.models import Post, Project, Category, Technology
+from django.db.models import Count, F
+from blog.models import Post, Project, Technology
 
 
 register = template.Library()
@@ -8,10 +8,8 @@ register = template.Library()
 
 @register.inclusion_tag('blog/index_include/most_post.html')
 def get_posts():
-    posts = Post.objects.all().select_related()
-    most_popular_posts= posts.order_by('-views')[:4]
-    recent_posts = posts.order_by('-created_at')[:4]
-    return {'most_popular_posts': most_popular_posts, 'recent_posts': recent_posts}
+    posts = Post.objects.all().select_related().annotate(most_popular_posts=F('views'))
+    return {'posts': posts, }
 
 
 @register.simple_tag

@@ -28,6 +28,6 @@ class ContactForm(forms.Form):
     def clean_phone(self):
         phone = self.cleaned_data['phone']
         pattern = r"[380|0][\d]{9}"
-        if re.match(pattern, phone):
+        if re.match(pattern, phone) or phone == '':
             return phone
         raise ValidationError('Not valid phone number')

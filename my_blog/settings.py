@@ -208,9 +208,9 @@ CKEDITOR_CONFIGS = {
     }
 }
 # E-mail configure
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_PORT = 465
-# EMAIL_HOST_USER = os.environ['EMAIL_HOST']
-# EMAIL_HOST_PASSWORD = os.environ['EMAIL_PASS']
-# EMAIL_USE_SSL = True
-# EMAIL_RECIPIENT = os.environ['EMAIL_RECIPIENT']
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = os.environ['EMAIL_HOST']
+EMAIL_HOST_PASSWORD = os.environ['EMAIL_PASS']
+EMAIL_USE_SSL = True
+EMAIL_RECIPIENT = os.environ['EMAIL_RECIPIENT']

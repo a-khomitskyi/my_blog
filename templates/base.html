@@ -78,7 +78,7 @@
 
         {% if page_obj.has_other_pages %}
             {% block paginator %}
-                <nav aria-label="Posts navigation" style="margin-left: 3%">
+                <nav aria-label="Posts navigation" style="margin: 0 auto; width: max-content;">
                     <ul class="pagination">
                         {% if page_obj.has_previous %}
                             <li class="page-item"><a class="page-link" tabindex="-1"
@@ -99,15 +99,6 @@
                                                      href="?page={{ page_obj.next_page_number }}">&#8250;</a>
                             </li>
                         {% endif %}
-
-                        {#            <li class="page-item active"><span aria-current="page" class="page-link current">1</span></li>#}
-                        {#            <li class="page-item "><a class="page-link" href="https://freehtml5.co/author/fh5co/page/2/">2</a></li>#}
-                        {#            <li class="page-item "><a class="page-link" href="https://freehtml5.co/author/fh5co/page/3/">3</a></li>#}
-                        {#            <li class="page-item "><span class="page-link dots">&hellip;</span></li>#}
-                        {#            <li class="page-item "><a class="page-link" href="https://freehtml5.co/author/fh5co/page/14/">14</a>#}
-                        {#            </li>#}
-                        {#            <li class="page-item "><a class="next page-link"#}
-                        {#                                      href="https://freehtml5.co/author/fh5co/page/2/">&raquo;</a></li>#}
                     </ul>
                 </nav>
             {% endblock %}

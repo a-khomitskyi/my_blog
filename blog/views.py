@@ -3,6 +3,7 @@ from django.core.mail import send_mail
 from django.contrib import messages
 from django.views.generic import ListView, DetailView
 from django.db.models import F
+from django.conf import settings
 
 from .models import Category, Post, Project
 from .forms import ContactForm
@@ -18,6 +19,7 @@ class ViewAllPosts(ListView):
     template_name = 'blog/main-blog.html'
     context_object_name = 'posts'
     paginate_by = 8
+    allow_empty = False
 
     def get_queryset(self):
         return Post.objects.all().select_related()
@@ -27,6 +29,7 @@ class ViewCategoryPost(ListView):
     template_name = 'blog/category_posts.html'
     context_object_name = 'posts'
     paginate_by = 4
+    allow_empty = False
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -60,6 +63,7 @@ class ViewProjects(ListView):
     model = Project
     context_object_name = 'projects'
     paginate_by = 8
+    allow_empty = False
 
 
 class ViewProject(DetailView):
@@ -80,9 +84,11 @@ class ViewTagProjects(ListView):
     template_name = 'blog/tag_projects.html'
     model = Project
     context_object_name = 'projects'
+    allow_empty = False
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
+        # Shit I know...
         context['tag'] = str(self.request.path).split('/')[-1]
         return context
 
@@ -96,8 +102,10 @@ def view_send_mail(request):
         if form.is_valid():
             res = send_mail(subject=form.cleaned_data['email'], message=form.cleaned_data['message'],
                             from_email=os.environ['EMAIL_HOST'], recipient_list=[os.environ['EMAIL_RECIPIENT'], ])
-            if res:
-                messages.success(request, 'Message has been sending')
+            letter = open('email_confirmation.txt').read()
+            repl = send_mail('Mail confirmation', str(letter), os.environ['EMAIL_HOST'], [form.cleaned_data['email']])
+            if res and repl:
+                messages.success(request, 'Message has been sent')
                 print(res)
                 print(request.POST)
                 return redirect('home')
