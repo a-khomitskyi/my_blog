@@ -1,18 +1,20 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load general_tags %}
+{% load cache %}
 
 
 {% block content %}
 
     {% include 'blog/index_include/big_present.html' %}
 
-    {#        {% include 'blog/index_include/most_popular_posts.html' %}#}
-    {% get_posts %}
-    {#        {% include 'blog/index_include/recent_posts.html' %}#}
-    {% include 'blog/index_include/recent_projects.html' %}
+	{% cache 120 main %}
+		{% get_posts %}
 
-    {% get_most_used_tchs %}
+		{% include 'blog/index_include/recent_projects.html' %}
+
+    	{% get_most_used_tchs %}
+	{% endcache %}
 
     <div id="get-in-touch">
         <div class="fh5co-narrow-content" style="padding: 10px">

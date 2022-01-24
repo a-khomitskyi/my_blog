@@ -3,7 +3,6 @@ from django.core.mail import send_mail
 from django.contrib import messages
 from django.views.generic import ListView, DetailView
 from django.db.models import F
-from django.conf import settings
 
 from .models import Category, Post, Project
 from .forms import ContactForm
@@ -106,8 +105,6 @@ def view_send_mail(request):
             repl = send_mail('Mail confirmation', str(letter), os.environ['EMAIL_HOST'], [form.cleaned_data['email']])
             if res and repl:
                 messages.success(request, 'Message has been sent')
-                print(res)
-                print(request.POST)
                 return redirect('home')
             else:
                 messages.error(request, 'Something wrong... Please, repeat later')

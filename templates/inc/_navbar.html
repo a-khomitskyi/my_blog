@@ -1,11 +1,12 @@
 {% load menu %}
 {% load static %}
+{% load cache %}
 
 {#Include CDN's library#}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/drawer/3.2.2/css/drawer.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/iScroll/5.2.0/iscroll.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/drawer/3.2.2/js/drawer.min.js"></script>
+<link rel="stylesheet" href="{% static 'css/drawer.min.css' %}">
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/iscroll.min.js' %}"></script>
+<script src="{% static 'js/drawer.min.js' %}"></script>
 <script src="{% static 'js/active.js' %}"></script>
 <aside id="fh5co-aside" role="complementary" class="border js-fullheight" style="overflow-y: auto">
 
@@ -15,9 +16,9 @@
             Andrii X
         </a>
     </h1>
-
     {% block navbar %}
-        <nav id="fh5co-main-menu" role="navigation">
+		{% cache 3600 navbar %}
+		<nav id="fh5co-main-menu" role="navigation">
 
             <ul class="drawer-menu">
                 <li>
@@ -57,7 +58,8 @@
             </ul>
 
         </nav>
-    {% endblock %}
+		{% endcache %}
+	{% endblock %}
 
     <div class="fh5co-footer">
         <p>

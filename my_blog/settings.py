@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+from django.core.management.utils import get_random_secret_key
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -22,13 +23,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = os.environ['SECRET_KEY']
-SECRET_KEY = "django-insecure-zmx4v$ldiai2tt3^eubd0g14lb59fd&wm1in$*+_reysb6z_f$"
+SECRET_KEY = os.getenv('SECRET_KEY', get_random_secret_key())
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['c367-92-52-176-136.ngrok.io', '127.0.0.1']
-
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -86,7 +86,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -210,7 +209,7 @@ CKEDITOR_CONFIGS = {
 # E-mail configure
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 465
-EMAIL_HOST_USER = os.environ['EMAIL_HOST']
-EMAIL_HOST_PASSWORD = os.environ['EMAIL_PASS']
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_PASS')
 EMAIL_USE_SSL = True
-EMAIL_RECIPIENT = os.environ['EMAIL_RECIPIENT']
+EMAIL_RECIPIENT = os.getenv('EMAIL_RECIPIENT')
