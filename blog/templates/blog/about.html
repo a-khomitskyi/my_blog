@@ -2,17 +2,44 @@
 {% load static %}
 
 {% block content %}
-    <div class="fh5co-narrow-content">
-        <div class="row row-bottom-padded-md">
-            <div class="col-md-6 animate-box" data-animate-effect="fadeInLeft">
-                <img class="img-responsive" src="{% static 'images/img_bg_1.jpg' %}"
-                     alt="Free HTML5 Bootstrap Template by FreeHTML5.co">
-            </div>
-            <div class="col-md-6 animate-box" data-animate-effect="fadeInLeft">
-                <h2 class="fh5co-heading">About Me</h2>
-                <p>Here will be some text.</p>
-                <p>And here also.</p>
-            </div>
-        </div>
-    </div>
+	<div class="fh5co-narrow-content">
+		<div class="row row-bottom-padded-md">
+			<div class="col-md-6 animate-box" data-animate-effect="fadeInLeft">
+				<img class="img-responsive" src="{% static 'images/myself.jpg' %}"
+					 alt="Here must be my photo...">
+			</div>
+			<div class="row animate-box" data-animate-effect="fadeInLeft" style="margin: 0 1%">
+				<h2 class="fh5co-heading">About Me</h2>
+				<div>
+					<p><i>~ Introduction ~</i><br>Hi there, I’m <strong>Andrii Khomitskyi</strong> from Ukraine (a
+						country in the east of Europe),
+						for Internet users usually <b><i>@DoesNotMatter</i></b>. I'm 22. Nowadays I've got a master's
+						degree in Software
+						Engineering. And I want to work as a programmer in an interesting company.
+					</p>
+					<p>
+						<i>~ A little bit about my hobbies ~</i><br>I’m interested in coding, sites development, and solving
+						difficult problems. Also, I play the
+						guitar (and a little bit on contrabass) from 2010 until today. In fact, reading musical notes is
+						even easier than reading the strange code for solving problems in one line on codewars.com ;)
+					</p>
+					<p>
+						<i>~ Hard-skills and experience ~</i><br>Currently, I'm deepening in back-end Python development.
+						For this, I use the Django framework and a
+						little bit of Flask. As for databases I usually work with Postgres, MySQL and have a bit of
+						experience with NoSQL (like Mongo). Also, I like writing useful scripts that will be making my
+						life
+						easier in the future (like looking for a new car).
+					</p>
+					<p>
+						<i>~ For employer ~</i><br>I would like to work with a cool team that solves interesting problems
+						for clients. I really want
+						to keep up with the times, learn the best professional practices from senior colleagues. Well,
+						of
+						course, often spend free time with the team (I'm a fan of outdoor activities).
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
 {% endblock %}

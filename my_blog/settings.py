@@ -26,9 +26,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY', get_random_secret_key())
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -83,9 +83,9 @@ WSGI_APPLICATION = 'my_blog.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd629mll361a0t',
-        'USER': 'vrdfbianjdtsqe',
-        'PASSWORD': '60554eb16126baf27c312e9dfdecbf3a09955070a772ca0769670738df0ad411',
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASS'),
         'HOST': 'ec2-34-194-171-47.compute-1.amazonaws.com',
         'PORT': '5432',
     }
