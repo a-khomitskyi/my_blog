@@ -28,7 +28,11 @@ SECRET_KEY = os.getenv('SECRET_KEY', get_random_secret_key())
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1',
+                 'afternoon-stream-18968.herokuapp.com',
+                 'www.afternoon-stream-18968.herokuapp.com',
+                 '0.0.0.0',
+                 'localhost']
 
 # Application definition
 
@@ -93,7 +97,7 @@ DATABASES = {
 
 WHITENOISE_USE_FINDERS = True
 
-db_from_env = dj_database_url.config(conn_max_age=500)
+db_from_env = dj_database_url.config(conn_max_age=600)
 DATABASES['default'].update(db_from_env)
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
