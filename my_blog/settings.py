@@ -15,7 +15,6 @@ from django.core.management.utils import get_random_secret_key
 import os
 import dj_database_url
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -26,9 +25,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY', get_random_secret_key())
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'afternoon-stream-18968.herokuapp.com', 'www.afternoon-stream-18968.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'afternoon-stream-18968.herokuapp.com',
+                 'www.afternoon-stream-18968.herokuapp.com']
 
 # Application definition
 
@@ -229,7 +229,6 @@ EMAIL_HOST_USER = os.getenv('EMAIL_HOST')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_PASS')
 EMAIL_USE_SSL = True
 EMAIL_RECIPIENT = os.getenv('EMAIL_RECIPIENT')
-
 
 AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
