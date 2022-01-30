@@ -61,7 +61,7 @@ class ViewProjects(ListView):
     template_name = 'blog/view_projects.html'
     model = Project
     context_object_name = 'projects'
-    paginate_by = 8
+    paginate_by = 4
     allow_empty = False
 
 
