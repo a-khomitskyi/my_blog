@@ -17,7 +17,7 @@ class ViewAllPosts(ListView):
     model = Post
     template_name = 'blog/main-blog.html'
     context_object_name = 'posts'
-    paginate_by = 8
+    paginate_by = 4
     allow_empty = False
 
     def get_queryset(self):
