@@ -197,12 +197,21 @@ CKEDITOR_CONFIGS = {
     }
 }
 # E-mail configure
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 465
-EMAIL_HOST_USER = os.getenv('EMAIL_HOST')
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_PASS')
-EMAIL_USE_SSL = True
-EMAIL_RECIPIENT = os.getenv('EMAIL_RECIPIENT')
+if DEBUG is True:
+    EMAIL_HOST = 'smtp.gmail.com'
+    EMAIL_PORT = 465
+    EMAIL_HOST_USER = os.getenv('EMAIL_HOST')
+    EMAIL_HOST_PASSWORD = os.getenv('EMAIL_PASS')
+    EMAIL_USE_SSL = True
+    EMAIL_RECIPIENT = os.getenv('EMAIL_RECIPIENT')
+else:
+    EMAIL_HOST = 'smtp.ukr.net'
+    EMAIL_PORT = 465
+    EMAIL_HOST_USER = os.getenv('EMAIL_HOST')
+    EMAIL_HOST_PASSWORD = os.getenv('EMAIL_PASS')
+    EMAIL_USE_SSL = True
+    EMAIL_RECIPIENT = os.getenv('EMAIL_RECIPIENT')
+
 
 AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
