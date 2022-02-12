@@ -22,7 +22,6 @@ Project are using next technologies:
 * dj-database-url 0.5.0
 * boto3 1.20.45
 * django-storages 1.12.3
-* django-ckeditor 6.2.0
 
 ## Installation & Configuration
 
